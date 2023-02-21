@@ -1,0 +1,19 @@
+{
+  "name": "pluggableAuthFrontEnd",
+  "version": "1.0.0",
+  "description": "first try at dummy frontend",
+  "main": "src.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src.js",
+    "dev": "nodemon src.js"
+  },
+  "author": "Amy Doyle",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20",
+    "start": "node src.js",
+    "dev": "nodemon src.js"
+  }
+}
