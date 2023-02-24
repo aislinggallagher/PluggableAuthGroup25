@@ -5,7 +5,7 @@ This is a program that sends demo emails. For now I set it so that it sends a te
 
 I used the mevan quickstart archetype as the base and the sole added dependency is the same javamail API i use to send the mails. 
 
-Running it shouldn't be anything too hard everything is already in place except for the destination email just make sure you have all the files, then run SendMailDemo.java 
+Running it shouldn't be anything too hard everything is already in place except for the destination email just make sure you have all the files, then run SendMailDemo.java in srcs main
 
 I decided to go with outlook for the smtp email provider since netcore seemed to be having a problem where they didnt let me sign up.
 
