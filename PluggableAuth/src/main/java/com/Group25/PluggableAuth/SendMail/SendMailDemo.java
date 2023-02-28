@@ -1,4 +1,4 @@
-package com.pluggable;
+package com.Group25.PluggableAuth.SendMail;
 
 import java.util.Scanner;
 import java.io.IOException;
@@ -21,7 +21,7 @@ public class SendMailDemo {
     String password;
     
 
-    private SendMailDemo(){
+    public SendMailDemo(){
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.office365.com"); //Basically the address that lets us send emails, different providers have different ones
         props.put("mail.smtp.port", "587"); 
@@ -42,19 +42,16 @@ public class SendMailDemo {
         });
     }   
 
-    public static void main(String[] args) throws IOException {
+    public void sendMail(String email) throws IOException {
 
-        SendMailDemo newMail = new SendMailDemo(); //Creating instance of the demo mail class
+        //SendMailDemo newMail = new SendMailDemo(); //Creating instance of the demo mail class
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter Destination Address: ");
-        String to = scanner.nextLine(); //sets the destination email as whatever the user enters
-        scanner.close();
+        String to = email; //sets the destination email as whatever the user enters
 
         try {
  
-            Message message = new MimeMessage(newMail.session);
-            message.setFrom(new InternetAddress(newMail.from));
+            Message message = new MimeMessage(this.session);
+            message.setFrom(new InternetAddress(this.from));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
             message.setSubject("Pluggable Auth Test"); 
              
