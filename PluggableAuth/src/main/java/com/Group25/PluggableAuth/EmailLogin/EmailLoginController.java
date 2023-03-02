@@ -13,7 +13,7 @@ import com.Group25.PluggableAuth.SendMail.SendMailDemo;
 
 @Controller
 public class EmailLoginController{
-
+    SendMailDemo mail = new SendMailDemo();
 
     @GetMapping ("/login")
     public String loginPage(Model model) {
@@ -24,7 +24,6 @@ public class EmailLoginController{
     @PostMapping("/login")
     public String loginSubbmit( @ModelAttribute EmailLogin login, Model model) throws IOException{
         model.addAttribute("login", login);
-        SendMailDemo mail = new SendMailDemo();
         mail.sendMail(login.getEmail());
         return "result";
     }
