@@ -1,5 +1,6 @@
-package com.Group25.PluggableAuth.SendMail;
+package com.Group25.PluggableAuth.Adapters.outbound.SendMail;
 
+import java.util.Scanner;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -54,7 +55,7 @@ public class SendMailDemo {
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
             message.setSubject("Pluggable Auth Test"); 
              
-            String msg = "Thank you for your attention!";
+            String msg = "Testing. Group 25 Authentication.";
              
             MimeBodyPart mimeBodyPart = new MimeBodyPart();
             mimeBodyPart.setContent(msg, "text/html"); //This part of the email is HTML however images and other attachments can be added

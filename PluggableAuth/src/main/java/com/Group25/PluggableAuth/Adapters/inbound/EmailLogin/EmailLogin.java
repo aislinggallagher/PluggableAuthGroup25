@@ -1,4 +1,4 @@
-package com.Group25.PluggableAuth.EmailLogin;
+package com.Group25.PluggableAuth.Adapters.inbound.EmailLogin;
 
 public class EmailLogin {
     private String email;
