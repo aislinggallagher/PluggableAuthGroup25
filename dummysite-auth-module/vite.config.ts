@@ -5,6 +5,7 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 
 // https://vitejs.dev/config/
+//https://github.com/marketplace/actions/vue-to-github-pages
 export default defineConfig({
   plugins: [vue(), vueJsx()],
   resolve: {
