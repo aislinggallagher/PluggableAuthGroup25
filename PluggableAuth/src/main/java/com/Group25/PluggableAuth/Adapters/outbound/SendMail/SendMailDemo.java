@@ -1,6 +1,5 @@
 package com.Group25.PluggableAuth.Adapters.outbound.SendMail;
 
-import java.util.Scanner;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -42,7 +41,7 @@ public class SendMailDemo {
         });
     }   
 
-    public void sendMail(String email) throws IOException {
+    public int sendMail(String email, String messageText) throws IOException {
 
         //SendMailDemo newMail = new SendMailDemo(); //Creating instance of the demo mail class
 
@@ -55,7 +54,8 @@ public class SendMailDemo {
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
             message.setSubject("Pluggable Auth Test"); 
              
-            String msg = "Testing. Group 25 Authentication.";
+            String msg = "Testing. Group 25 Authentication. ";
+            msg.concat(messageText);
              
             MimeBodyPart mimeBodyPart = new MimeBodyPart();
             mimeBodyPart.setContent(msg, "text/html"); //This part of the email is HTML however images and other attachments can be added
@@ -67,10 +67,11 @@ public class SendMailDemo {
           
             Transport.send(message); //Transport.send actually sends the message using javamail
           
-            System.out.println("Mail successfully sent..");
+            return 1;
           
            } catch (MessagingException e) {
             e.printStackTrace(); //Javamail exception thrown when authenthication fails e.g wrong password etc
+            return 0;
            }
           }
 
