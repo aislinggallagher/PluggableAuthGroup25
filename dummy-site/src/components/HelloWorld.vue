@@ -1,79 +1,54 @@
 <template>
-  <v-container class="fill-height">
-    <v-responsive class="d-flex align-center text-center fill-height">
-      <v-img
-        contain
-        height="300"
-        src="@/assets/logo.svg"
-      />
-
-      <div class="text-body-2 font-weight-light mb-n1">Welcome to</div>
-
-      <h1 class="text-h2 font-weight-bold">Vuetify</h1>
-
-      <div class="py-14" />
-
-      <v-row class="d-flex align-center justify-center">
-        <v-col cols="auto">
-          <v-btn
-            href="https://next.vuetifyjs.com/components/all/"
-            min-width="164"
-            rel="noopener noreferrer"
-            target="_blank"
-            variant="text"
-          >
-            <v-icon
-              icon="mdi-view-dashboard"
-              size="large"
-              start
-            />
-
-            Components
-          </v-btn>
-        </v-col>
-
-        <v-col cols="auto">
-          <v-btn
-            color="primary"
-            href="https://next.vuetifyjs.com/introduction/why-vuetify/#feature-guides"
-            min-width="228"
-            rel="noopener noreferrer"
-            size="x-large"
-            target="_blank"
-            variant="flat"
-          >
-            <v-icon
-              icon="mdi-speedometer"
-              size="large"
-              start
-            />
-
-            Get Started
-          </v-btn>
-        </v-col>
-
-        <v-col cols="auto">
-          <v-btn
-            href="https://community.vuetifyjs.com/"
-            min-width="164"
-            rel="noopener noreferrer"
-            target="_blank"
-            variant="text"
-          >
-            <v-icon
-              icon="mdi-account-group"
-              size="large"
-              start
-            />
-
-            Community
-          </v-btn>
-        </v-col>
-      </v-row>
-    </v-responsive>
-  </v-container>
+  <router-view />
+  <main>
+  <v-app>
+    <div class="background"></div>
+    <v-main class="d-flex justify-center align-center">
+      <v-col cols="10" lg="4" class="mx-auto">
+        <v-card>
+          <div class="text-center">
+            <v-avatar size="100" color="indigo lighten-4">
+              <v-icon size="40" color="white">mdi-account</v-icon>
+            </v-avatar>
+            <h2 class="indigo--text">Pluggable Auth Module Login</h2>
+          </div>
+          <v-form>
+            <v-card-text>
+              <v-text-field
+                      type="email"
+                      label="Email"
+                      outline dense color="blue"
+                      autocomplete="false"
+                      placeholder="Email"
+                      prepend-inner-icon="mdi-account"
+                      required
+              />
+              <v-switch label="Remember me" color="indigo"></v-switch>
+            </v-card-text>
+            <v-card-actions class="justify-center">
+              <v-btn color="indigo">
+                <span class="white--text px-8">SUBMIT</span>
+              </v-btn>
+            </v-card-actions>
+          </v-form>
+        </v-card>
+      </v-col>
+    </v-main>
+  </v-app>
+  </main>
 </template>
 
 <script lang="ts" setup>
-  //
 </script>
+
+<style>
+ .background {
+background-image: url(./assets/1.jpg) !important;
+height: 100%;
+width: 100%;
+display: block;
+position: absolute;
+top: 0;
+background-size: cover
+} 
+</style>
