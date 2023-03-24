@@ -29,8 +29,8 @@ public class LoginService {
         String website = "http://localhost:8080/";
         try{
             String jwt = jwtService.generateJWT(to, website, secretKey);
-            String gotoPageWithToken = website+"?token="+jwt;
-            message.concat("\n\n" + gotoPageWithToken);
+            String returnToken = website+"?token="+jwt;
+            message.concat("\n\n" + returnToken);
             mailPort.sendMail(to, message);
         } catch (JOSEException e) {
             e.printStackTrace();
