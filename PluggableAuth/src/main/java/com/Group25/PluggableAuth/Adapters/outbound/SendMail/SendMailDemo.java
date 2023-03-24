@@ -14,7 +14,9 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-public class SendMailDemo {
+import com.Group25.PluggableAuth.Port.EmailPort;
+
+public class SendMailDemo implements EmailPort {
     Session session;
     String from;
     String password;
@@ -41,7 +43,7 @@ public class SendMailDemo {
         });
     }   
 
-    public int sendMail(String email, String messageText) throws IOException {
+    public int sendMail(String email, String messageText) {
 
         //SendMailDemo newMail = new SendMailDemo(); //Creating instance of the demo mail class
 

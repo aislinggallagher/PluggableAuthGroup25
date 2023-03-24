@@ -13,7 +13,11 @@ import com.Group25.PluggableAuth.Domain.LoginService;
 @Controller
 public class EmailLoginController{
 
-    private LoginService loginService = new LoginService();
+    private LoginService loginService;
+
+    public EmailLoginController(LoginService loginService) {
+        this.loginService = loginService;
+    }
 
     @GetMapping ("/login")
     public String loginPage(Model model) {

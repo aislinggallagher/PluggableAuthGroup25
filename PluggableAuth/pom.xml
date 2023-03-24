@@ -17,6 +17,14 @@
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
+    	<dependency>
+	        <groupId>org.springframework</groupId>
+	        <artifactId>spring-test</artifactId>
+    	</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -31,6 +39,17 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+			<groupId>com.nimbusds</groupId>
+			<artifactId>nimbus-jose-jwt</artifactId>
+			<version>9.31</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
       		<groupId>junit</groupId>
       		<artifactId>junit</artifactId>
       		<version>4.11</version>
@@ -41,11 +60,6 @@
       		<artifactId>mail</artifactId>
       		<version>1.4.7</version>
      	</dependency>
-		  <dependency>
-          <groupId>io.jsonwebtoken</groupId>
-          <artifactId>jjwt</artifactId>
-          <version>0.9.1</version>
-      </dependency>
 	</dependencies>
 
 
