@@ -1,10 +1,14 @@
 package com.Group25.PluggableAuth.Adapters.outbound.SendMail;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
+import com.Group25.PluggableAuth.Port.EmailPort;
+
+import javax.mail.MessagingException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Properties;
@@ -74,13 +78,25 @@ public class SendMailDemo implements EmailPort {
     }
     
 
-    public void sendEmail(String to, String message) //Login service uses, to address, message format so i changed sendemail to do the same
+    public int sendMail(String to, String message) //Login service uses, to address, message format so i changed sendemail to do the same
     {   
+        
+      try{
         mail = new SimpleMailMessage();
         mail.setFrom(mailSender.getUsername());  //Some SMTPs need you to set from address to send
         mail.setTo(to);         //Sets to address
         mail.setText(message);  //Sets text of mail as inputted string
         mailSender.send(mail);  //Actually sends mail
+
+        return 1;
+    }
+
+        catch (MailException ex) {                 //Thrown when error occurs
+            ex.printStackTrace();
+            return 0;                      //Print error   
+
+           }
+
     }
 }
 
