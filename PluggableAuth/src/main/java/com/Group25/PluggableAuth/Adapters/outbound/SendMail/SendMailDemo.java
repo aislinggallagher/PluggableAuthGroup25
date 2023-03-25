@@ -1,83 +1,86 @@
 package com.Group25.PluggableAuth.Adapters.outbound.SendMail;
 
-import java.io.IOException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Properties;
+import java.util.Scanner;
 
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Multipart;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
 
-import com.Group25.PluggableAuth.Port.EmailPort;
+public class SendMailDemo implements EmailPort { 
+//New version of sendmail demo that uses spring API and reads user/pass from application.properties file
 
-public class SendMailDemo implements EmailPort {
-    Session session;
-    String from;
-    String password;
+    JavaMailSenderImpl mailSender;
+    Properties props;
+    String s;
+    private SimpleMailMessage mail;
+
+
+    public SendMailDemo() 
     
-
-    public SendMailDemo(){
-        Properties props = new Properties();
-        props.put("mail.smtp.host", "smtp.office365.com"); //Basically the address that lets us send emails, different providers have different ones
-        props.put("mail.smtp.port", "587"); 
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.socketFactory.port", "587");
-        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-        props.put("mail.smtp.ssl.trust", "smtp.office365.com");
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.ssl.protocols", "TLSv1.2"); //Without this it tries to run an older TLS version and dies
-        from = "pluggableauthg25@outlook.com"; // Address of person its being sent from (i created an outlook email for us because it worked, theoretically you could use any email service that has functional smtp support)
-        password = "Bigauthfan25*"; // password for email mail address. 
-
+    {
+        mailSender = new JavaMailSenderImpl();
+        //Section reads properties from appication.properties file solving the exposed password issue
+        try{
+        File inputFile = new File("target/classes/application.properties");
+        Scanner scanner = new Scanner(inputFile);
         
-        session = Session.getInstance(props, new javax.mail.Authenticator() {
-        protected PasswordAuthentication getPasswordAuthentication() {
-         return new PasswordAuthentication(from, password);
-         }
-        });
-    }   
+        while (scanner.hasNextLine()) {
+            String currentLine = scanner.nextLine(); //Essentially checks  application.properties line by line for properties
 
-    public int sendMail(String email, String messageText) {
+            if(currentLine.startsWith("spring.mail.host=")) {
+                 s = currentLine.replace("spring.mail.host=","");
+                mailSender.setHost(s);
+                System.out.println(mailSender.getHost());
+            }
+            else if(currentLine.startsWith("spring.mail.port=")){
+                 s = currentLine.replace("spring.mail.port=","");
 
-        //SendMailDemo newMail = new SendMailDemo(); //Creating instance of the demo mail class
+                mailSender.setPort(Integer.parseInt(s));
+            }
+            else if(currentLine.startsWith("spring.mail.username=")){
+                 s = currentLine.replace("spring.mail.username=","");
+                 mailSender.setUsername(s);
+                
+                }
 
-        String to = email; //sets the destination email as whatever the user enters
+            else if(currentLine.startsWith("spring.mail.password=")){
+                s = currentLine.replace("spring.mail.password=","");
+                mailSender.setPassword(s);
+            }
 
-        try {
- 
-            Message message = new MimeMessage(this.session);
-            message.setFrom(new InternetAddress(this.from));
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
-            message.setSubject("Pluggable Auth Test"); 
-             
-            String msg = "Testing. Group 25 Authentication. ";
-            msg.concat(messageText);
-             
-            MimeBodyPart mimeBodyPart = new MimeBodyPart();
-            mimeBodyPart.setContent(msg, "text/html"); //This part of the email is HTML however images and other attachments can be added
-              
-            Multipart multipart = new MimeMultipart();
-            multipart.addBodyPart(mimeBodyPart); //This adds the msg string to the email
+            else if(currentLine.startsWith("spring.mail.properties.mail.smtp.auth=true")){
+                props = mailSender.getJavaMailProperties();                                         //if smtp auth is true we know the transfer protocol is smtp and we can also set its auth to true
+                props.put("mail.transport.protocol", "smtp");
+                props.put("mail.smtp.auth", "true");
+            }
+            else if(currentLine.startsWith("spring.mail.properties.mail.smtp.starttls.enable=true")){
+                props.put("mail.smtp.starttls.enable", "true");                        
+                props.put("mail.debug", "true");
+            }
+        
+        }
+    
+    }
 
-            message.setContent(multipart); //Sets the final messages content now that i have added everything i want
-          
-            Transport.send(message); //Transport.send actually sends the message using javamail
-          
-            return 1;
-          
-           } catch (MessagingException e) {
-            e.printStackTrace(); //Javamail exception thrown when authenthication fails e.g wrong password etc
-            return 0;
-           }
-          }
+        catch(FileNotFoundException e){ //Handles file not found error
+            e.printStackTrace();
+        }
 
     }
     
-    
+
+    public void sendEmail(String to, String message) //Login service uses, to address, message format so i changed sendemail to do the same
+    {   
+        mail = new SimpleMailMessage();
+        mail.setFrom(mailSender.getUsername());  //Some SMTPs need you to set from address to send
+        mail.setTo(to);         //Sets to address
+        mail.setText(message);  //Sets text of mail as inputted string
+        mailSender.send(mail);  //Actually sends mail
+    }
+}
 
