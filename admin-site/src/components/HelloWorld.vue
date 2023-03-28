@@ -3,12 +3,16 @@
   <img src="C:\Users\amydo\Downloads\login.jpg" alt="Login image">-->
   <div class="login">
     <div style="display: flex; justify-content: center; align-items: center; height: 10vh;">
-  <h1>Pluggable Login</h1>
+  <h1>Admin-site Login</h1>
     </div>
     <form>
       <div class="form-group">
         <label for="email">Email address</label>
         <input type="email" class="form-control" id="email" v-model="email" placeholder="Enter email">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" v-model="password" placeholder="Enter password">
       </div>
       <button type="submit" class="btn btn-primary" @click.prevent="submit">
   <span>Login</span>
@@ -29,7 +33,8 @@
 export default {
   data() {
     return {
-      email: ""
+      email: "",
+      password:"",
     };
   },
   methods: {
@@ -63,6 +68,14 @@ label {
 }
 
 input[type="email"]{
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+input[type="password"]{
   width: 100%;
   padding: 10px;
   font-size: 16px;
