@@ -1,79 +1,83 @@
 <template>
-  <v-container class="fill-height">
-    <v-responsive class="d-flex align-center text-center fill-height">
-      <v-img
-        contain
-        height="300"
-        src="@/assets/logo.svg"
-      />
-
-      <div class="text-body-2 font-weight-light mb-n1">Welcome to</div>
-
-      <h1 class="text-h2 font-weight-bold">Vuetify</h1>
-
-      <div class="py-14" />
-
-      <v-row class="d-flex align-center justify-center">
-        <v-col cols="auto">
-          <v-btn
-            href="https://next.vuetifyjs.com/components/all/"
-            min-width="164"
-            rel="noopener noreferrer"
-            target="_blank"
-            variant="text"
-          >
-            <v-icon
-              icon="mdi-view-dashboard"
-              size="large"
-              start
-            />
-
-            Components
-          </v-btn>
-        </v-col>
-
-        <v-col cols="auto">
-          <v-btn
-            color="primary"
-            href="https://next.vuetifyjs.com/introduction/why-vuetify/#feature-guides"
-            min-width="228"
-            rel="noopener noreferrer"
-            size="x-large"
-            target="_blank"
-            variant="flat"
-          >
-            <v-icon
-              icon="mdi-speedometer"
-              size="large"
-              start
-            />
-
-            Get Started
-          </v-btn>
-        </v-col>
-
-        <v-col cols="auto">
-          <v-btn
-            href="https://community.vuetifyjs.com/"
-            min-width="164"
-            rel="noopener noreferrer"
-            target="_blank"
-            variant="text"
-          >
-            <v-icon
-              icon="mdi-account-group"
-              size="large"
-              start
-            />
-
-            Community
-          </v-btn>
-        </v-col>
-      </v-row>
-    </v-responsive>
-  </v-container>
+  <!---<div class="container">
+  <img src="C:\Users\amydo\Downloads\login.jpg" alt="Login image">-->
+  <div class="login">
+    <div style="display: flex; justify-content: center; align-items: center; height: 10vh;">
+  <h1>Pluggable Login</h1>
+    </div>
+    <form>
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" class="form-control" id="email" v-model="email" placeholder="Enter email">
+      </div>
+      <button type="submit" class="btn btn-primary" @click.prevent="submit">
+  <span>Login</span>
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 30 30" 
+    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+    stroke-linejoin="round" class="feather feather-log-in" id="IconChangeColor"
+    style="position: relative; top: 6.5px; margin-left: 5px;">
+    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" id="mainIconPathAttribute"></path>
+    <polyline points="10 17 15 12 10 7"></polyline>
+    <line x1="15" y1="12" x2="3" y2="12"></line>
+  </svg>
+</button>
+    </form>
+  </div>
 </template>
 
-<script lang="ts" setup>
-  //
+<script>
+export default {
+  data() {
+    return {
+      email: ""
+    };
+  },
+  methods: {
+    submit() {
+      // perform login logic
+    }
+  }
+};
 </script>
+
+<style scoped>
+.login {
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: 423px;
+  margin-top: 125px;
+  margin-bottom: auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="email"]{
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+button[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+}
+</style>
