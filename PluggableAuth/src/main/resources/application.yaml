@@ -1,0 +1,19 @@
+spring:
+  mail:
+    host: smtp.netcorecloud.net
+    port: 25
+    properties:
+      mail:
+        transport:
+          protocol: smtp
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+    username: TEST
+    password: TEST
+    from: "TEST"
+
+debug: false
+jwk: 'TEST'
