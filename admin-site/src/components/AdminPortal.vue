@@ -1,5 +1,5 @@
 <template>
-  <v-container class="fill-height">
+  <v-container fluid class="fill-height">
     <v-responsive class="d-flex text-center fill-height">
       <v-row class="d-flex align-center justify-center">
         <v-col class="text-h2 text-center font-weight-bold text-decoration-underline">Admin Portal</v-col>
@@ -25,18 +25,18 @@
         </v-btn>
         </v-col>  
       </v-row>
-      <table>
-        <thead>
+      <v-table>
+        <thead style="background-color: #E1E3E5;">
           <tr>
-            <th class="w-40">Name</th>
-            <th class="w-40">URL</th>
-            <th class="w-40">Callback Url</th>
-            <th class="w-40">Success Url</th>
-            <th class="w-40">Error Url</th>
-            <th class="w-40">Site ID</th>
+            <th class="w-40 text-center font-weight-bold">Name</th>
+            <th class="w-40 text-center font-weight-bold">URL</th>
+            <th class="w-40 text-center font-weight-bold">Callback Url</th>
+            <th class="w-40 text-center font-weight-bold">Success Url</th>
+            <th class="w-40 text-center font-weight-bold">Error Url</th>
+            <th class="w-40 text-center font-weight-bold">Site ID</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody style="background-color:#E1E3E5">
           <tr>
             <td>
               <input
@@ -82,7 +82,7 @@
             </td>
           </tr>
         </tbody>
-    </table>
+    </v-table>
       
       <div class="py-14" />
     </v-responsive>
