@@ -16,4 +16,4 @@ spring:
     from: "TEST"
 
 debug: false
-jwk: 'TEST'
+jsonKey: 'TEST'
