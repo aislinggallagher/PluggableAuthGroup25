@@ -18,67 +18,69 @@
         <v-col class="text-right">
           <v-btn color="green"
                   size="large"
-                  target="_blank"
-                  
+                  prepend-icon="mdi-plus"
+                v-on:click="addRow()"
           >
-                   Register & Add Site
+                <template prepend-icon></template>
+                  Register & Add Site
+               
         </v-btn>
         </v-col>  
       </v-row>
       <v-table>
         <thead style="background-color: #E1E3E5;">
           <tr>
-            <th class="w-40 text-center font-weight-bold">Name</th>
-            <th class="w-40 text-center font-weight-bold">URL</th>
-            <th class="w-40 text-center font-weight-bold">Callback Url</th>
-            <th class="w-40 text-center font-weight-bold">Success Url</th>
-            <th class="w-40 text-center font-weight-bold">Error Url</th>
-            <th class="w-40 text-center font-weight-bold">Site ID</th>
+            <th class="w-40 text-center font-weight-bold" scope="col">Name</th>
+            <th class="w-40 text-center font-weight-bold" scope="col">URL</th>
+            <th class="w-40 text-center font-weight-bold" scope="col">CallbackUrl</th>
+            <th class="w-40 text-center font-weight-bold" scope="col">SuccessUrl</th>
+            <th class="w-40 text-center font-weight-bold" scope="col">ErrorUrl</th>
+            <th class="w-40 text-center font-weight-bold" scope="col">SiteID</th>
           </tr>
         </thead>
-        <tbody style="background-color:#E1E3E5">
-          <tr>
+        <tbody style="background-color: #E1E3E5;">
+          <tr v-for="row in rows">
             <td>
               <input
                 type="text"
                 class="h-8 shadow appearance-white border rounded w-full text-black font-weight-medium text-center leading-tight focus:outline"
-                style="background: white;"
-                />
+                style="background: white"
+                />{{ row.Name }}
             </td>
             <td>
               <input
                 type="text"
                 class="h-8 shadow appearance-white border rounded w-full text-black font-weight-medium text-center leading-tight focus:outline"
-                style="background: white;"
-                />
+                style="background: white"
+                />{{ row.URL }}
             </td>
             <td>
               <input
                 type="text"
                 class="h-8 shadow appearance-white border rounded w-full text-black font-weight-medium text-center leading-tight focus:outline"
-                style="background: white;"
-                />
+                style="background: white"
+                />{{ row.CallbackUrl }}
             </td>
             <td>
               <input
                 type="text"
                 class="h-8 shadow appearance-white border rounded w-full text-black font-weight-medium text-center leading-tight focus:outline"
-                style="background: white;"
-                />
+                style="background: white"
+                />{{ row.SuccessUrl }}
             </td>
             <td>
               <input
                 type="text"
                 class="h-8 shadow appearance-white border rounded w-full text-black font-weight-medium text-center leading-tight focus:outline"
-                style="background: white;"
-                />
+                style="background: white"
+                />{{ row.ErrorUrl }}
             </td>
             <td>
               <input
                 type="text"
                 class="h-8 shadow appearance-white border rounded w-full text-black font-weight-medium text-center leading-tight focus:outline"
-                style="background: white;"
-                />
+                style="background: white"
+                />{{ row.SiteID }}
             </td>
           </tr>
         </tbody>
@@ -95,45 +97,42 @@
 
 <script lang="ts">
 
-  import {ref} from '@vue/reactivity'
-
   export default{
     data(){
-    
-      return {
-      }
-     
-      const rows = ref([] as any)
-      function addRow(){
-      rows.value.push([
-        {
+      return{
           "Name":"",
           "URL":"",
-          "Callback Url":"",
-          "Success Url":"",
-          "Error Url":"",
-          "Site ID":"",
-        },
-      ]);
-      console.log(rows.value);
-      } return{
-        rows, 
-        addRow
-      }      
+          "CallbackUrl":"",
+          "SuccessUrl":"",
+          "ErrorUrl":"",
+          "SiteID":"",
+          rows:[] as any[]
+    }
+  },
+    methods:{
+      addRow(){
+        var newRow = {
+          "Name" : this['Name'],
+          "URL" : this['URL'],
+          "CallbackUrl" : this['CallbackUrl'],
+          "SuccessUrl" : this['SuccessUrl'],
+          "ErrorUrl" : this['ErrorUrl'],
+          "SiteID" : this['SiteID'],
+        };
+        this.rows.push(newRow)
+
+        this['Name'] = "";
+        this['URL'] = "";
+        this['CallbackUrl'] = "";
+        this['SuccessUrl'] = "";
+        this['ErrorUrl'] = "";
+        this['SiteID'] = "";
+
+      },
+      removeRow(){
+
+      }
     }
   }
   
 </script>
-
-<style scoped>
-button[type="Register & Add Site"] {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  font-size: 100%;
-  border: none;
-  border-radius: 5px;
-  background-color: green;
-  color: green;
-}
-</style>
