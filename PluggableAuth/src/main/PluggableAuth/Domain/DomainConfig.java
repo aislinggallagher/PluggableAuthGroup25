@@ -21,12 +21,8 @@ import static com.nimbusds.jose.JWSAlgorithm.ES384;
 
 @Configuration
 public class DomainConfig {
-    //  @Value("${json key?}")
-    //  private String key;
-
-//   @Value("${sender}")
-    //  private String sender;
-
+      @Value("${jsonKey}")
+      private String key;
     @Autowired
     public EmailPort mailPort;
 
@@ -40,22 +36,27 @@ public class DomainConfig {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("me@gmail.comma");
         message.setSubject("subject");
-        message.setText("Token: %s \n Link: %s");
+        message.setText("%s");
         return message;
     }
 
     @Bean
     public ECKey ecJWK() {
-        //    return (ECKey) JWK.parse(json key);
-        return null;
+        try {
+            return (ECKey) JWK.parse(key);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
-    //build the header, using the jwt using key
+    //build the header, using key
     @Bean
     public JWSHeader jwsHeader(ECKey ecJWK) {
         return new JWSHeader.Builder(JWSAlgorithm.ES256).keyID(ecJWK.getKeyID()).build();
     }
 
+    //sign it
     @Bean
     public JWSSigner jwsSigner(ECKey ecJWK) {
         try {
@@ -65,6 +66,7 @@ public class DomainConfig {
         }
     }
 
+    //then verify it
     @Bean
     public JWSVerifier jwsVerifier(ECKey ecJWK) {
         try {
