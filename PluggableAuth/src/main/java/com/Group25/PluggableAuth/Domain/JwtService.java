@@ -1,18 +1,26 @@
 package com.Group25.PluggableAuth.Domain;
 import com.nimbusds.jose.*;
-import com.nimbusds.jose.crypto.MACSigner;
 import com.nimbusds.jwt.JWTClaimsSet;
+import com.nimbusds.jwt.SignedJWT;
 
-
-
-import java.security.SecureRandom;
+//import java.security.SecureRandom;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 public class JwtService {
-    
-    public static String generateJWT(String email, String website, String secretKey) throws JOSEException {
+
+    private JWSHeader jwsHeader;
+    private JWSSigner jwssigner;
+
+    public JwtService(JWSHeader jwsHeader, JWSSigner jwssigner)
+    {
+        this.jwsHeader = jwsHeader;
+        this.jwssigner = jwssigner;
+    }
+
+    public String generateJWT(String email, String website) throws JOSEException
+    {
 
         Instant now = Instant.now();
         Instant expires = now.plus(3, ChronoUnit.HOURS);
@@ -23,15 +31,15 @@ public class JwtService {
                 .notBeforeTime(Date.from(now))
                 .expirationTime(Date.from(expires))
                 .build();
-        JWSObject jwsObject = new JWSObject(new JWSHeader(JWSAlgorithm.HS256), new Payload(claimsSet.toJSONObject()));
 
-        JWSSigner signer = new MACSigner(secretKey);
-        jwsObject.sign(signer);
+        SignedJWT signedJWT = new SignedJWT(jwsHeader, claimsSet);
+        signedJWT.sign(jwssigner);
 
-        String serializedJWT = jwsObject.serialize();        
+        String serializedJWT = signedJWT.serialize();
         return serializedJWT;
     }
-    
+
+    /*
     public static String secretKeyGenerator(int bits)
     {
     	SecureRandom random = new SecureRandom();
@@ -40,4 +48,5 @@ public class JwtService {
         String secretKey = new String(keyBytes);
         return secretKey;
     }
+    */
 }

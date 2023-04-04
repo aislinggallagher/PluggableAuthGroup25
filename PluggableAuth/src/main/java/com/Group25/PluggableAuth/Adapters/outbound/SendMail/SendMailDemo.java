@@ -68,7 +68,7 @@ public class SendMailDemo implements EmailPort {
             }
         
         }
-    
+        scanner.close();
     }
 
         catch(FileNotFoundException e){ //Handles file not found error

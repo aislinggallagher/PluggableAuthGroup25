@@ -17,18 +17,17 @@ public class LoginService {
     private JwtService jwtService;
     private String message;
     
-    public  LoginService(SendMailDemo mailPort, JwtService jwtService, String message){
-        this.mailPort = mailPort;
+    public  LoginService(EmailPort mailPort2, JwtService jwtService, String message){
+        this.mailPort = mailPort2;
         this.jwtService = jwtService;
         this.message = message;
     }
 
     public void sendMail(String to) throws IOException{
         // setup message and add the jwt to the link and concatenate to message.
-        String secretKey = jwtService.secretKeyGenerator(256);
         String website = "http://localhost:8080/";
         try{
-            String jwt = jwtService.generateJWT(to, website, secretKey);
+            String jwt = jwtService.generateJWT(to, website);
             String returnToken = website+"?token="+jwt;
             message.concat("\n\n" + returnToken);
             mailPort.sendMail(to, message);
