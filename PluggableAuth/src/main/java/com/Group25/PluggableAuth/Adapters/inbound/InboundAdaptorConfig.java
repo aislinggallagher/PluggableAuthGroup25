@@ -23,6 +23,7 @@ import org.springframework.context.annotation.Configuration;
 public class InboundAdaptorConfig {
     @Autowired
     private LoginService loginService;
+    
     @Bean
     public EmailLoginController loginEndpoint() {
         return new EmailLoginController(loginService);

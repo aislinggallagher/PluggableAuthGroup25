@@ -25,11 +25,20 @@ public class SendMailDemo implements EmailPort {
 
 
     public SendMailDemo() 
-    
     {
         mailSender = new JavaMailSenderImpl();
         //Section reads properties from appication.properties file solving the exposed password issue
-        try{
+        mailSender.setHost("smtp.office365.com");
+        mailSender.setPort(587);
+        mailSender.setUsername("pluggableauthg25@outlook.com");
+        mailSender.setPassword("Bigauthfan25*");
+        props = mailSender.getJavaMailProperties();
+        props.put("mail.transport.protocol", "smtp");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");                        
+        props.put("mail.debug", "true");
+
+        /*try{
         File inputFile = new File("target/classes/application.properties");
         Scanner scanner = new Scanner(inputFile);
         
@@ -74,6 +83,7 @@ public class SendMailDemo implements EmailPort {
         catch(FileNotFoundException e){ //Handles file not found error
             e.printStackTrace();
         }
+    */
 
     }
     

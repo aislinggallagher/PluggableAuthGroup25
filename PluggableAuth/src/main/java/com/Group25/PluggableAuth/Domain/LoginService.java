@@ -23,6 +23,12 @@ public class LoginService {
         this.message = message;
     }
 
+    public  LoginService(EmailPort mailPort2, JwtService jwtService){
+        this.mailPort = mailPort2;
+        this.jwtService = jwtService;
+        this.message = "";
+    }
+
     public void sendMail(String to) throws IOException{
         // setup message and add the jwt to the link and concatenate to message.
         String website = "http://localhost:8080/";
