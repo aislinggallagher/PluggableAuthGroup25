@@ -16,7 +16,7 @@ import java.text.ParseException;
 
 @Configuration
 public class DomainConfig {
-    @Value("${jwk}")
+    @Value("${jsonKey}")
     private String key;
 
     @Autowired(required = true)
