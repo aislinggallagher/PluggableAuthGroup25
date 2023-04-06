@@ -1,7 +1,7 @@
 <template>
-  <AdminPortal/>
+  "Home Page"
 </template>
 
 <script lang="ts" setup>
-  import AdminPortal from '@/components/AdminPortal.vue';
+  import AdminPortal from '@/views/AdminPortal.vue.js';
 </script>
