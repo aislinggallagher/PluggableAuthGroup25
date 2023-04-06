@@ -25,11 +25,11 @@ public class InboundAdaptorConfig {
     private LoginService loginService;
     
     @Bean
-    public EmailLoginController loginEndpoint() {
+    public EmailLoginController emailLoginController() {
         return new EmailLoginController(loginService);
     }
     @Bean
-    public HomeEndPoint HomePage() {
+    public HomeEndPoint homeEndPoint() {
         return new HomeEndPoint();
     }
     @Bean

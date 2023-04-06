@@ -21,10 +21,14 @@ public class DomainConfig {
 
     @Autowired(required = true)
     public EmailPort mailPort;
+    
+    @Bean String string(){
+        return new String();
+    }
 
     @Bean
-    public LoginService loginService(JwtService jwtService, String message) {
-        return new LoginService(mailPort,jwtService, message);
+    public LoginService loginService(JwtService jwtService) {
+        return new LoginService(mailPort,jwtService);
     }
 
     @Bean

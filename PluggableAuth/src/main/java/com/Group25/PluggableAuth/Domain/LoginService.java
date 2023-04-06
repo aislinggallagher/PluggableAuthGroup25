@@ -13,10 +13,10 @@ public class LoginService {
     private JwtService jwtService;
     private String message;
     
-    public  LoginService(EmailPort mailPort, JwtService jwtService, String message){
+    public  LoginService(EmailPort mailPort, JwtService jwtService){
         this.mailPort = mailPort;
         this.jwtService = jwtService;
-        this.message = message;
+        this.message = new String();
     }
 
     public void sendMail(String to) throws IOException{
@@ -25,7 +25,9 @@ public class LoginService {
         try{
             String jwt = jwtService.generateJWT(to, website);
             String returnToken = website+"?token="+jwt;
-            message.concat("\n\n" + returnToken);
+            message = message + returnToken;
+            System.out.println("Message: " + message);
+            System.out.println(returnToken);
             mailPort.sendMail(to, message);
         } catch (JOSEException e) {
             e.printStackTrace();

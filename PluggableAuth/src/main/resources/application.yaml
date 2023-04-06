@@ -16,4 +16,20 @@ spring:
     from: "TEST"
 
 debug: false
-jsonKey: 'TEST'
+jsonKey: '{
+    "kty": "EC",
+    "d": "4lO93dDGKKbvQRkATRaCu_4FFIO8fvbQquiLZU_p93U",
+    "use": "sig",
+    "crv": "P-256",
+    "kid": "AfF36d-0QneYrm304T6rJnSJJf8Tgj4yboGYtdzCP3k",
+    "x": "E8-QGgi7JDEWTxjkJW7tziWuyMkINAf8Brdl_I7F_cE",
+    "y": "6vCaVW-IIXoD43S_GBj9NXKM6IT6ZZ0D-x66PnpX6I8",
+    "alg": "ES256"
+}'
+spring.mail.host: 'smtp.office365.com'
+spring.mail.port: '587'
+spring.mail.username: 'pluggableauthg25@outlook.com'
+spring.mail.password: 'Bigauthfan25*'
+spring.mail.properties.mail.smtp.auth: 'true'
+spring.mail.properties.mail.smtp.starttls.enable: 'true'
+spring.main.allow-bean-definition-overriding: 'true'

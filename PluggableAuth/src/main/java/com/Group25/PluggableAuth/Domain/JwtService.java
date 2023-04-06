@@ -3,7 +3,7 @@ import com.nimbusds.jose.*;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
 
-//import java.security.SecureRandom;
+import java.security.SecureRandom;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
@@ -39,7 +39,6 @@ public class JwtService {
         return serializedJWT;
     }
 
-    /*
     public static String secretKeyGenerator(int bits)
     {
     	SecureRandom random = new SecureRandom();
@@ -48,5 +47,4 @@ public class JwtService {
         String secretKey = new String(keyBytes);
         return secretKey;
     }
-    */
 }
