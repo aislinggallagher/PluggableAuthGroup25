@@ -1,14 +1,10 @@
 package com.Group25.PluggableAuth.Domain;
 
 import com.Group25.PluggableAuth.Port.EmailPort;
-import com.Group25.PluggableAuth.Adapters.outbound.SendMail.SendMailDemo;
-import com.Group25.PluggableAuth.Domain.JwtService;
 
 import com.nimbusds.jose.JOSEException;
 
 import java.io.IOException;
-
-import org.springframework.mail.SimpleMailMessage;
 
 
 public class LoginService {
@@ -17,16 +13,10 @@ public class LoginService {
     private JwtService jwtService;
     private String message;
     
-    public  LoginService(EmailPort mailPort2, JwtService jwtService, String message){
-        this.mailPort = mailPort2;
+    public  LoginService(EmailPort mailPort, JwtService jwtService, String message){
+        this.mailPort = mailPort;
         this.jwtService = jwtService;
         this.message = message;
-    }
-
-    public  LoginService(EmailPort mailPort2, JwtService jwtService){
-        this.mailPort = mailPort2;
-        this.jwtService = jwtService;
-        this.message = "";
     }
 
     public void sendMail(String to) throws IOException{

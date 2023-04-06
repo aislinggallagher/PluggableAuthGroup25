@@ -10,25 +10,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.mail.SimpleMailMessage;
 
 import java.text.ParseException;
 
 
 @Configuration
 public class DomainConfig {
-      @Value("${jwk}")
-      private String key;
-    @Autowired
+    @Value("${jwk}")
+    private String key;
+
+    @Autowired(required = true)
     public EmailPort mailPort;
 
     @Bean
-    public SimpleMailMessage simpleMailMessage() {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("me@gmail.comma");
-        message.setSubject("subject");
-        message.setText("%s");
-        return message;
+    public LoginService loginService(JwtService jwtService, String message) {
+        return new LoginService(mailPort,jwtService, message);
     }
 
     @Bean
@@ -71,10 +67,4 @@ public class DomainConfig {
     public JwtService jwtService(JWSHeader jwsHeader, JWSSigner jwsSigner) {
         return new JwtService(jwsHeader, jwsSigner);
     }
-
-    @Bean
-    public LoginService loginService(JwtService jwtService, String message) {
-        return new LoginService(mailPort, jwtService, message);
-    }
-
 }
