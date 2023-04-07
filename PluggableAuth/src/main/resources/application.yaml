@@ -26,10 +26,3 @@ jsonKey: '{
     "y": "6vCaVW-IIXoD43S_GBj9NXKM6IT6ZZ0D-x66PnpX6I8",
     "alg": "ES256"
 }'
-spring.mail.host: 'smtp.office365.com'
-spring.mail.port: '587'
-spring.mail.username: 'pluggableauthg25@outlook.com'
-spring.mail.password: 'Bigauthfan25*'
-spring.mail.properties.mail.smtp.auth: 'true'
-spring.mail.properties.mail.smtp.starttls.enable: 'true'
-spring.main.allow-bean-definition-overriding: 'true'
