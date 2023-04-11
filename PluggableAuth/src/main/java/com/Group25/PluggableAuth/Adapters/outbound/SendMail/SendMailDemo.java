@@ -93,6 +93,7 @@ public class SendMailDemo implements EmailPort {
         mail = new SimpleMailMessage();
         mail.setFrom(mailSender.getUsername());  //Some SMTPs need you to set from address to send
         mail.setTo(to);         //Sets to address
+        mail.setSubject("Login to XYZ");
         mail.setText(message);  //Sets text of mail as inputted string
         mailSender.send(mail);  //Actually sends mail
 
