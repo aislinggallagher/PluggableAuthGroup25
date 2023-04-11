@@ -1,7 +1,9 @@
 <template>
-  <router-view />
+    <RouterView></RouterView>
 </template>
 
-<script lang="ts" setup>
-  //
+<script lang="ts">
+export default {
+    name: 'adminSite',
+};
 </script>
