@@ -13,7 +13,7 @@
                 type="email" outlined></v-text-field>
               <v-text-field v-model="password" label="Enter your password" name="password" prepend-inner-icon="mdi-lock"
                 type="password" outlined></v-text-field>
-              <v-btn @click="goToAdminPage()" color="green" x-large block dark>Login</v-btn>
+              <v-btn @click="goToAdminPage()" color="primary" x-large block dark>Login</v-btn>
             </v-form>
           </v-card-text>
         </v-card>

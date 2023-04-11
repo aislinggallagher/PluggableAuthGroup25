@@ -4,7 +4,10 @@
       <v-row class="d-flex align-center justify-center">
         <v-col class="text-h2 text-center font-weight-bold text-decoration-underline">Admin Portal</v-col>
         <v-col cols="auto">
-        <v-btn class="text-center font-weight-normal text-decoration-underline">Log Out</v-btn>
+        <v-btn class="text-center font-weight-normal text-decoration-underline"
+        @click="goToAdminLogin()">
+        Log Out
+        </v-btn>
         </v-col>
       </v-row>
 
@@ -16,7 +19,7 @@
             Client List:
         </v-col>
         <v-col class="text-right">
-          <v-btn color="green"
+          <v-btn color="primary"
                   size="large"
                   prepend-icon="mdi-plus"
                 v-on:click="addRow()"
@@ -92,7 +95,11 @@
 </template>
 
 <script lang="ts" setup>
-//
+  import router from '@/router';
+
+  function goToAdminLogin() {
+  router.push({ path: '/' });
+}
 </script>
 
 <script lang="ts">
