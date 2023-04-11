@@ -1,5 +1,13 @@
 // Composables
+import { createApp } from "vue";
 import { createRouter, createWebHistory } from 'vue-router'
+import App from "./App.vue";
+import AdminPortal from "./AdminPortal.vue";
+
+//const app = createApp(App);
+
+//app.mount("#app");
+
 
 const routes = [
   {
@@ -16,7 +24,7 @@ const routes = [
 
       },
       {
-        path: '/dashboard',
+        path: '/AdminPortal',
         name: 'AdminPortal',
         component: () => import('@/views/AdminPortal.vue'),
       },
