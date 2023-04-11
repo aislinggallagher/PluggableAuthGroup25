@@ -1,10 +1,12 @@
 package com.Group25.PluggableAuth.Adapters.outbound.SendMail;
 
+import org.apache.catalina.webresources.FileResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.util.ResourceUtils;
 
 import com.Group25.PluggableAuth.Port.EmailPort;
 
@@ -13,6 +15,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Properties;
 import java.util.Scanner;
+import java.nio.file.*;
 
 
 public class SendMailDemo implements EmailPort { 
@@ -27,19 +30,14 @@ public class SendMailDemo implements EmailPort {
     public SendMailDemo() 
     {
         mailSender = new JavaMailSenderImpl();
-        //Section reads properties from appication.properties file solving the exposed password issue
-        mailSender.setHost("smtp.office365.com");
-        mailSender.setPort(587);
-        mailSender.setUsername("pluggableauthg25@outlook.com");
-        mailSender.setPassword("Bigauthfan25*");
-        props = mailSender.getJavaMailProperties();
-        props.put("mail.transport.protocol", "smtp");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");                        
-        props.put("mail.debug", "true");
 
-        /*try{
-        File inputFile = new File("target/classes/application.properties");
+        try{ 
+            ClassLoader classLoader = getClass().getClassLoader();
+            
+        File inputFile = new File(classLoader.getResource("application.properties").getFile());
+        
+    
+        
         Scanner scanner = new Scanner(inputFile);
         
         while (scanner.hasNextLine()) {
@@ -83,7 +81,7 @@ public class SendMailDemo implements EmailPort {
         catch(FileNotFoundException e){ //Handles file not found error
             e.printStackTrace();
         }
-    */
+    
 
     }
     
