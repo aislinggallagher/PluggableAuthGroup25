@@ -18,5 +18,8 @@ jobs:
         with:
           java-version: 17
 
+      - name: Build project with Maven
+        run: mvn -B clean verify -Dspring.profiles.active=test
+        
       - name: Build the Docker image
         run: docker build . --file Dockerfile --tag arangra/email-client:$(date +%s)
