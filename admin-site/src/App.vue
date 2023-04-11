@@ -1,16 +1,9 @@
 <template>
-  <div>
-    <adminLogin />
-    </div>
+    <RouterView></RouterView>
 </template>
 
 <script lang="ts">
- import  adminSite from "@/components/adminSite.vue"
-
- export default {
-  name: 'adminSite',
-  components: {
-    adminSite
-  }
- };
+export default {
+    name: 'adminSite',
+};
 </script>
