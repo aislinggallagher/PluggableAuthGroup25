@@ -1,0 +1,17 @@
+{
+    "users":[
+        {
+        "email": "oshiokae@tcd.ie",
+        "password": "password123",
+        "name": "Eliel Oshiokameh",
+        "id": 1
+        },
+        {
+            "email": "hubert@test.com",
+            "password": "Hubert789",
+            "name": "Hubert",
+            "id": 2
+            }
+
+    ]
+}
