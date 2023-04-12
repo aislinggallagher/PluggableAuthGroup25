@@ -33,7 +33,7 @@
               <v-switch label="Remember me" color="indigo"></v-switch>
             </v-card-text>
             <v-card-actions class="justify-center">
-              <v-btn color="indigo">
+              <v-btn color="indigo" @click.prevent="submitForm">
                 <span class="white--text px-8">SUBMIT</span>
               </v-btn>
             </v-card-actions>
@@ -45,7 +45,33 @@
   </main>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts">
+import axios from 'axios'
+
+export default { 
+  name: 'PostFormAxios',
+    data(){
+        return{
+            form: {
+                email: 'odoemele@tcd.ie',
+                terms: false
+            }
+        }
+    },
+    methods:{
+        submitForm(){
+            axios.post('http://localhost:8080/login', this.form)
+                 .then((res) => {
+                     //Perform Success Action
+                 })
+                 .catch((error) => {
+                     // error.response.status Check status code
+                 }).finally(() => {
+                     //Perform action in always
+                 });
+        }
+    }
+}
 </script>
 
 <style>
