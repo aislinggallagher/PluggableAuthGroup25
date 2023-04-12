@@ -1,6 +1,6 @@
 package com.Group25.PluggableAuth.Adapters.inbound;
 
-import com.Group25.PluggableAuth.Adapters.inbound.EmailLogin.EmailLoginController;
+import com.Group25.PluggableAuth.Adapters.inbound.EmailLogin.EmailRequestController;
 import com.Group25.PluggableAuth.Adapters.inbound.SecureLayer.HomeEndPoint;
 import com.Group25.PluggableAuth.Adapters.inbound.SecureLayer.JwtValidation;
 import com.Group25.PluggableAuth.Domain.LoginService;
@@ -25,8 +25,8 @@ public class InboundAdaptorConfig {
     private LoginService loginService;
     
     @Bean
-    public EmailLoginController emailLoginController() {
-        return new EmailLoginController(loginService);
+    public EmailRequestController emailRequestController() {
+        return new EmailRequestController(loginService);
     }
     @Bean
     public HomeEndPoint homeEndPoint() {
