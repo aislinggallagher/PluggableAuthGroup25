@@ -1,0 +1,28 @@
+spring:
+  mail:
+    host: smtp.netcorecloud.net
+    port: 25
+    properties:
+      mail:
+        transport:
+          protocol: smtp
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+    username: TEST
+    password: TEST
+    from: "TEST"
+
+debug: false
+jsonKey: '{
+    "kty": "EC",
+    "d": "4lO93dDGKKbvQRkATRaCu_4FFIO8fvbQquiLZU_p93U",
+    "use": "sig",
+    "crv": "P-256",
+    "kid": "AfF36d-0QneYrm304T6rJnSJJf8Tgj4yboGYtdzCP3k",
+    "x": "E8-QGgi7JDEWTxjkJW7tziWuyMkINAf8Brdl_I7F_cE",
+    "y": "6vCaVW-IIXoD43S_GBj9NXKM6IT6ZZ0D-x66PnpX6I8",
+    "alg": "ES256"
+}'
