@@ -19,18 +19,18 @@ public class LoginService {
         this.message = new String();
     }
 
-    public void sendMail(String to) throws IOException{
+    public String sendMail(String to) throws IOException{
         // setup message and add the jwt to the link and concatenate to message.
         String website = "http://localhost:8080/";
         try{
             String jwt = jwtService.generateJWT(to, website);
             String returnToken = website+"home?token="+jwt;
             message = message + returnToken;
-            System.out.println("Message: " + message);
-            System.out.println(returnToken);
             mailPort.sendMail(to, message);
+            return jwt;
         } catch (JOSEException e) {
             e.printStackTrace();
+            return "";
         }
     }
 

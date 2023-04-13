@@ -49,7 +49,7 @@
 import axios from 'axios'
 
 export default { 
-  name: 'PostFormAxios',
+  name: 'AxiosPost',
     data(){
         return{
             form: {
@@ -60,7 +60,7 @@ export default {
     },
     methods:{
         submitForm(){
-            axios.post('http://localhost:8080/login', this.form)
+            axios.post('http://localhost:8080/login', this.form, { withCredentials: true })
                  .then((res) => {
                      //Perform Success Action
                  })
