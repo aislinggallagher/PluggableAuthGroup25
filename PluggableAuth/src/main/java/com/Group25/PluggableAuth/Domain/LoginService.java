@@ -24,7 +24,7 @@ public class LoginService {
         String website = "http://localhost:8080/";
         try{
             String jwt = jwtService.generateJWT(to, website);
-            String returnToken = website+"home?token="+jwt;
+            String returnToken = website+"home/"+jwt;
             message = message + returnToken;
             mailPort.sendMail(to, message);
             return jwt;
