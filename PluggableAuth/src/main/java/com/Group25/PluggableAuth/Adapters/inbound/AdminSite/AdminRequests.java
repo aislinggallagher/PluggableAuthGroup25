@@ -30,13 +30,9 @@ public class AdminRequests {
     @PostMapping()
     public String loginSubbmit(@RequestBody Adminlogin admin, Model model, @RequestHeader(name="Origin", required=false)String host, HttpServletResponse response) throws IOException{
         model.addAttribute("admin", admin);
-        String jwt = loginService.adminLogin(admin.getEmail(), admin.getPassword());
+        String jwt = loginService.adminLogin(admin.getEmail(), admin.getPassword(), response);
         if(jwt != ""){
-            Cookie cookie = new Cookie("Admin_Login_JWT", jwt);
-            cookie.setDomain("localhost");
-            cookie.setHttpOnly(true);
-            response.addCookie(cookie);
-            return "/AdminPortal"; 
+            return "/AdminPortal";
         }
         return ""; 
     }

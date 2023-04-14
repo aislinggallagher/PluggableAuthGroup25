@@ -16,6 +16,10 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import org.springframework.ui.Model;
 
+/*
+ * This Controller handles the HTTP requests sent to its localhoastport/login.
+ * The Http rewuest should contain the email adress of the user once that has been recived it is passed on to the domain while we return the cookie in the response.
+ */
 @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 @RestController
 @RequestMapping("/login")
@@ -31,10 +35,6 @@ public class EmailRequestController {
     @PostMapping()
     public void loginSubbmit(@RequestBody EmailLogin email, Model model, @RequestHeader(name="Origin", required=false)String host, HttpServletResponse response) throws IOException{
         model.addAttribute("login", email);
-        String jwt = loginService.sendMail(email.getEmail());
-        Cookie cookie = new Cookie("Login_JWT", jwt);
-        cookie.setDomain("localhost");
-        cookie.setHttpOnly(true);
-        response.addCookie(cookie);
+        String jwt = loginService.sendMail(email.getEmail(), response);
     }
 }
