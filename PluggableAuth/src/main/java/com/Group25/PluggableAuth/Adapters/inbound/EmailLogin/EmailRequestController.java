@@ -5,14 +5,22 @@ import java.io.IOException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Group25.PluggableAuth.Domain.LoginService;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
+
 import org.springframework.ui.Model;
 
-@CrossOrigin(origins = "http://localhost:3000")
+/*
+ * This Controller handles the HTTP requests sent to its localhoastport/login.
+ * The Http rewuest should contain the email adress of the user once that has been recived it is passed on to the domain while we return the cookie in the response.
+ */
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 @RestController
 @RequestMapping("/login")
 public class EmailRequestController {
@@ -25,11 +33,8 @@ public class EmailRequestController {
     }
     
     @PostMapping()
-    public String loginSubbmit(@RequestBody EmailLogin email, Model model) throws IOException{
+    public void loginSubbmit(@RequestBody EmailLogin email, Model model, @RequestHeader(name="Origin", required=false)String host, HttpServletResponse response) throws IOException{
         model.addAttribute("login", email);
-        System.out.printf("%s",email.getEmail());
-        loginService.sendMail(email.getEmail());
-        System.out.printf("Mail!");
-        return "result";
+        String jwt = loginService.sendMail(email.getEmail(), response);
     }
 }

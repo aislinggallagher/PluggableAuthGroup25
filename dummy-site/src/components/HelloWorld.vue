@@ -19,25 +19,29 @@
             </v-avatar>
             <h2 class="indigo--text">Pluggable Auth Module Login</h2>
           </div>
-          <v-form>
+          <form v-on:submit.prevent="submitForm">
             <v-card-text>
-              <v-text-field
-                      type="email"
+              <v-text-field 
                       label="Email"
+                      class="form-control"
+                      id="email"
+                      type = "email"
+                      v-model="form.email"
                       outline dense color="blue"
                       autocomplete="false"
                       placeholder="Email"
                       prepend-inner-icon="mdi-account"
-                      required
+                      name = "message"
+                      required     
               />
               <v-switch label="Remember me" color="indigo"></v-switch>
             </v-card-text>
             <v-card-actions class="justify-center">
-              <v-btn color="indigo" @click.prevent="submitForm">
-                <span class="white--text px-8">SUBMIT</span>
-              </v-btn>
+              <div class="form-group">
+                    <button class="btn btn-primary">Submit</button>
+              </div>
             </v-card-actions>
-          </v-form>
+          </form>
         </v-card>
       </v-col>
     </v-main>
@@ -47,20 +51,20 @@
 
 <script lang="ts">
 import axios from 'axios'
+import { ref } from 'vue';
 
 export default { 
-  name: 'PostFormAxios',
+  name: 'AxiosPost',
     data(){
         return{
             form: {
-                email: 'odoemele@tcd.ie',
-                terms: false
+                email: '',
             }
         }
     },
     methods:{
         submitForm(){
-            axios.post('http://localhost:8080/login', this.form)
+            axios.post('http://localhost:8080/login', this.form, { withCredentials: true })
                  .then((res) => {
                      //Perform Success Action
                  })

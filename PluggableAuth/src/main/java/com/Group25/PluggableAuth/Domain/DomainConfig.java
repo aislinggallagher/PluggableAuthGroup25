@@ -1,5 +1,6 @@
 package com.Group25.PluggableAuth.Domain;
 
+import com.Group25.PluggableAuth.Port.CookiePort;
 import com.Group25.PluggableAuth.Port.EmailPort;
 import com.nimbusds.jose.*;
 import com.nimbusds.jose.crypto.ECDSASigner;
@@ -21,6 +22,9 @@ public class DomainConfig {
 
     @Autowired(required = true)
     public EmailPort mailPort;
+
+    @Autowired(required = true)
+    public CookiePort cookiePort;
     
     @Bean String string(){
         return new String();
@@ -28,7 +32,7 @@ public class DomainConfig {
 
     @Bean
     public LoginService loginService(JwtService jwtService) {
-        return new LoginService(mailPort,jwtService);
+        return new LoginService(mailPort,cookiePort,jwtService);
     }
 
     @Bean

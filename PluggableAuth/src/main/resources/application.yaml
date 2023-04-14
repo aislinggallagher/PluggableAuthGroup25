@@ -16,6 +16,7 @@ spring:
     from: "TEST"
 
 debug: false
+siteDomain: 'localhost'
 jsonKey: '{
     "kty": "EC",
     "d": "4lO93dDGKKbvQRkATRaCu_4FFIO8fvbQquiLZU_p93U",
