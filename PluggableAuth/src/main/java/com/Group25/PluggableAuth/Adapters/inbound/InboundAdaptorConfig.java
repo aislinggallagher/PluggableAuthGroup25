@@ -1,6 +1,7 @@
 package com.Group25.PluggableAuth.Adapters.inbound;
 
 import com.Group25.PluggableAuth.Adapters.inbound.EmailLogin.EmailRequestController;
+import com.Group25.PluggableAuth.Adapters.inbound.AdminSite.AdminRequests;
 import com.Group25.PluggableAuth.Adapters.inbound.SecureLayer.HomeEndPoint;
 import com.Group25.PluggableAuth.Adapters.inbound.SecureLayer.JwtValidation;
 import com.Group25.PluggableAuth.Domain.LoginService;
@@ -28,6 +29,12 @@ public class InboundAdaptorConfig {
     public EmailRequestController emailRequestController() {
         return new EmailRequestController(loginService);
     }
+
+    @Bean
+    public AdminRequests adminRequests() {
+        return new AdminRequests(loginService);
+    }
+
     @Bean
     public HomeEndPoint homeEndPoint() {
         return new HomeEndPoint();
