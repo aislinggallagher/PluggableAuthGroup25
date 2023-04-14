@@ -8,12 +8,12 @@
               <h1 class="text-h2-front-weight-bold">Admin Login</h1>
             </div>
             <v-form>
-              {{ email }}
-              <v-text-field v-model="email" label="Enter your email" name="email" prepend-inner-icon="mdi-email"
+              <!-- {{ email }} -->
+              <v-text-field v-model="form.email" label="Enter your email" name="email" prepend-inner-icon="mdi-email"
                 type="email" outlined></v-text-field>
-              <v-text-field v-model="password" label="Enter your password" name="password" prepend-inner-icon="mdi-lock"
+              <v-text-field v-model="form.password" label="Enter your password" name="password" prepend-inner-icon="mdi-lock"
                 type="password" outlined></v-text-field>
-              <v-btn @click="goToAdminPage()" color="primary" x-large block dark>Login</v-btn>
+              <v-btn @click.prevent="submitForm" color="primary" x-large block dark>Login</v-btn>
             </v-form>
           </v-card-text>
         </v-card>
@@ -22,26 +22,47 @@
   </v-container>
 </template>
 
-<script lang="ts" setup>
-import router from '@/router';
-import { ref } from 'vue';
+<script lang="ts">
+import axios from 'axios'
+import { text } from 'stream/consumers';
 
-const email = ref('')
-const password = ref('')
-
-function goToAdminPage() {
-  router.push({ path: '/AdminPortal' });
+export default { 
+  name: 'AxiosPost',
+    data(){
+        return{
+            form: {
+                email: '',
+                password: '',
+                terms: false
+            }
+        }
+    },
+    methods:{
+        submitForm(){
+            axios.post('http://localhost:8080/admin', this.form, { withCredentials: true })
+                 .then((res) => {
+                    console.log(res.data);
+                    this.$router.push(res.data);
+                 })
+                 .catch((error) => {
+                     // error.response.status Check status code
+                 }).finally(() => {
+                     //Perform action in always
+                 });
+        }
+        
+    }
 }
 
 
-function login() {
-  if (!email.value) {
-    console.error('No email')
-  }
-  if (!password.value) {
-    console.error('No password')
-  }
-  console.log(email.value);
-  console.log(password.value);
-}
+// function login() {
+//   if (!email.value) {
+//     console.error('No email')
+//   }
+//   if (!password.value) {
+//     console.error('No password')
+//   }
+//   console.log(email.value);
+//   console.log(password.value);
+// }
 </script>
