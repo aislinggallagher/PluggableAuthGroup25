@@ -4,7 +4,9 @@ import com.Group25.PluggableAuth.Port.CookiePort;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
-
+/*
+ * Sends the cookie as a respons for a request that arrived on an inbound adapter.
+ */
 public class CookieSender implements CookiePort{
 
     public CookieSender(){}

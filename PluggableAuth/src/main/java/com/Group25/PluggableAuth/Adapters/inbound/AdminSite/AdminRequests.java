@@ -1,7 +1,6 @@
 package com.Group25.PluggableAuth.Adapters.inbound.AdminSite;
 
 import java.io.IOException;
-import java.lang.ProcessBuilder.Redirect;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,11 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.Group25.PluggableAuth.Domain.LoginService;
 
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 
 import org.springframework.ui.Model;
 
+/*
+ * This controller handles the request fromthe admisite login page
+ */
 @CrossOrigin(origins = "http://localhost:3001", allowCredentials = "true")
 @RestController
 @RequestMapping("/admin")
