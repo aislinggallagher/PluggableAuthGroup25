@@ -14,6 +14,8 @@
     "core-js": "^3.8.3",
     "roboto-fontface": "*",
     "vue": "^3.2.13",
+    "vue-cookies": "^1.8.3",
+    "vue-cookies-ts": "^1.5.19",
     "vue-router": "^4.0.0",
     "vuetify": "^3.0.0",
     "webfontloader": "^1.0.0"

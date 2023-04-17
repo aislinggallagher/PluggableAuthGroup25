@@ -10,6 +10,7 @@ import App from './App.vue'
 // Composables
 import { createApp } from 'vue'
 
+
 // Plugins
 import { registerPlugins } from '@/plugins'
 
@@ -19,4 +20,6 @@ registerPlugins(app)
 
 app.mount('#app')
 import router from './router'
-createApp(App).use(router).mount('app')
+import VueCookies from 'vue-cookies'
+app.use(router).mount('app')
+app.use(VueCookies)

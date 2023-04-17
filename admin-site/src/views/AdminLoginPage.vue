@@ -24,7 +24,8 @@
 
 <script lang="ts">
 import axios from 'axios'
-import { text } from 'stream/consumers';
+import VueCookies from 'vue-cookies'
+
 
 export default { 
   name: 'AxiosPost',
@@ -41,7 +42,8 @@ export default {
         submitForm(){
             axios.post('http://localhost:8080/admin', this.form, { withCredentials: true })
                  .then((res) => {
-                    console.log(res.data);
+                    console.log(res.headers);
+                    this.$cookies.set(res.headers['cookiename'],res.headers['jwt'],60*60)
                     this.$router.push(res.data);
                  })
                  .catch((error) => {

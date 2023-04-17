@@ -18,7 +18,7 @@ import org.springframework.ui.Model;
 /*
  * This controller handles the request fromthe admisite login page
  */
-@CrossOrigin(origins = "http://localhost:3001", allowCredentials = "true")
+@CrossOrigin(origins = "http://localhost:3001", allowCredentials = "true", exposedHeaders = {"jwt", "cookieName"} )
 @RestController
 @RequestMapping("/admin")
 public class AdminRequests {

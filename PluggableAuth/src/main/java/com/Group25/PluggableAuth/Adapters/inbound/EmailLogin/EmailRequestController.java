@@ -20,7 +20,7 @@ import org.springframework.ui.Model;
  * This Controller handles the HTTP requests sent to its localhoastport/login.
  * The Http rewuest should contain the email adress of the user once that has been recived it is passed on to the domain while we return the cookie in the response.
  */
-@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true", exposedHeaders = {"jwt", "cookieName"} )
 @RestController
 @RequestMapping("/login")
 public class EmailRequestController {

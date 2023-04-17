@@ -66,7 +66,8 @@ export default {
         submitForm(){
             axios.post('http://localhost:8080/login', this.form, { withCredentials: true })
                  .then((res) => {
-                     //Perform Success Action
+                    this.$cookies.set(res.headers['cookiename'],res.headers['jwt'])
+                    this.$router.push(res.data);
                  })
                  .catch((error) => {
                      // error.response.status Check status code
