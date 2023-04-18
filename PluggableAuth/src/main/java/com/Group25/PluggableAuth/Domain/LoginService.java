@@ -35,10 +35,10 @@ public class LoginService {
      */
     public String sendMail(String to, HttpServletResponse response) throws IOException{
         // setup message and add the jwt to the link and concatenate to message.
-        String website = "http://localhost:8080/";
+        String website = "http://localhost:3000/";
         try{
             String jwt = jwtService.generateJWT(to, website);
-            String returnToken = website+"home/"+jwt;
+            String returnToken = website+"Logedin/"+jwt+"/";
             message = message + returnToken;
             mailPort.sendMail(to, message);
             cookiePort.sendCookie(response, jwt, "Login_JWT");
